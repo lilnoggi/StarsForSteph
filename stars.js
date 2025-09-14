@@ -12,6 +12,9 @@ const messages = [
     "You are my star!",
     "You are my light in the dark!",
     "You are my dream come true!",
+    "Sorry the planets are shit!",
+    "You are my entire galaxy",
+    "I love you infinity",
 ];
 
 const activeMessages = [];
