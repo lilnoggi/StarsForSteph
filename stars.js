@@ -44,6 +44,33 @@ const moon = {
     speedX: 0.05
 };
 
+// Nebula
+function drawNebula() {
+    const centerX = canvas.width * 0.5;
+    const centerY = canvas.height * 0.5;
+    const radiusX = canvas.width * 0.25; // horizontal radius
+    const radiusY = canvas.height * 0.15; // vertical radius
+    const tilt = -0.4; // radians, negative = clockwise tilt
+
+    ctx.save(); // save current state
+    ctx.translate(centerX, centerY); // move origin to center
+    ctx.rotate(tilt); // tilt the canvas
+    ctx.scale(1, radiusY / radiusX); // make the circle an oval
+
+    const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radiusX);
+    gradient.addColorStop(0, "rgba(255, 100, 255, 0.12)");
+    gradient.addColorStop(0.5, "rgba(100, 150, 255, 0.06)");
+    gradient.addColorStop(1, "rgba(0, 0, 0, 0.9)");
+
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(0, 0, radiusX, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore(); // restore original context
+}
+
+
 // Array to hold stars
 const stars = [];
 
@@ -96,7 +123,7 @@ function drawHeart(x, y, size) {
 }
 
 function animateStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawNebula();
 
     // Move planet
     planet.x += planet.speedX;
