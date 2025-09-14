@@ -52,24 +52,23 @@ function drawNebula() {
     const radiusY = canvas.height * 0.15; // vertical radius
     const tilt = -0.4; // radians, negative = clockwise tilt
 
-    ctx.save(); // save current state
-    ctx.translate(centerX, centerY); // move origin to center
-    ctx.rotate(tilt); // tilt the canvas
-    ctx.scale(1, radiusY / radiusX); // make the circle an oval
+    ctx.save();
+    ctx.translate(centerX, centerY);
+    ctx.rotate(tilt);
+    ctx.scale(1, radiusY / radiusX);
 
     const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radiusX);
-    gradient.addColorStop(0, "rgba(255, 100, 255, 0.12)");
-    gradient.addColorStop(0.5, "rgba(100, 150, 255, 0.06)");
-    gradient.addColorStop(1, "rgba(0, 0, 0, 0.9)");
+    gradient.addColorStop(0, "rgba(167, 16, 167, 0.79)"); // pinkish center
+    gradient.addColorStop(0.5, "rgba(103, 149, 247, 0.45)"); // bluish mid
+    gradient.addColorStop(1, "rgba(255, 255, 255, 0)"); // lighter outer
 
     ctx.fillStyle = gradient;
     ctx.beginPath();
     ctx.arc(0, 0, radiusX, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.restore(); // restore original context
+    ctx.restore();
 }
-
 
 // Array to hold stars
 const stars = [];
@@ -118,13 +117,13 @@ function drawHeart(x, y, size) {
     ctx.bezierCurveTo(x, y + size/1.5, x + size, y + size/2, x + size, y);
     ctx.bezierCurveTo(x + size, y - size/2, x, y - size/2, x, y);
     ctx.closePath();
-    ctx.fillStyle = `rgba(255,0,128,0.8)`;
+    ctx.fillStyle = `rgba(100, 29, 117, 0.8)`;
     ctx.fill();
 }
 
 function animateStars() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     drawNebula();
 
     // Move planet
@@ -226,7 +225,7 @@ h.trail.forEach((t, index) => {
     if (Math.random() < 0.02) spawnHeart();
 
         // Draw constellation
-    ctx.strokeStyle = 'rgba(255,192,203,0.6)';
+    ctx.strokeStyle = 'rgba(255, 217, 223, 0.6)';
     ctx.lineWidth = 2;
     ctx.beginPath();
     for (let i=0; i<constellation.length-1; i++) {
