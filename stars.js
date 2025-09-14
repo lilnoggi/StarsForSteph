@@ -123,6 +123,8 @@ function drawHeart(x, y, size) {
 }
 
 function animateStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
     drawNebula();
 
     // Move planet
